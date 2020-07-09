@@ -13,7 +13,9 @@ public class HystrixCommandImpl extends HystrixCommand<String> {
                 .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("PrimaryCommand"))
                 .andCommandPropertiesDefaults(
                         // we default to a 600ms timeout for primary
-                        HystrixCommandProperties.Setter().withExecutionTimeoutInMilliseconds(200)));
+                        HystrixCommandProperties.Setter().withExecutionTimeoutInMilliseconds(200)
+                                .withCircuitBreakerEnabled(true)
+                                .withCircuitBreakerRequestVolumeThreshold(4)));
         this.data=p;
     }
 
