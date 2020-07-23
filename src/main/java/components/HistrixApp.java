@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@EnableHystrix
-@EnableHystrixDashboard
 @RestController
+
+@EnableHystrix
+
+@EnableHystrixDashboard
 public class HistrixApp {
     public static void main(String[] args) {
         SpringApplication.run(HistrixApp.class, args);
