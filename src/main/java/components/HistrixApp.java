@@ -22,22 +22,17 @@ public class HistrixApp {
     }
 
     @RequestMapping(value = "/echo/{param}", method = RequestMethod.GET)
-    @HystrixCommand(fallbackMethod = "fallback_hello", commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")
-    })
+    @HystrixCommand(fallbackMethod = "fallback_hello")
     public String echo (@PathVariable(name = "param") String param ){
-        Random random=new Random();
-        int intRandom= random.nextInt(999);
-        System.out.println("IntRandom: "+intRandom);
-        try {
-            Thread.sleep(intRandom);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return "Echo... "+intRandom;
+
+        return "Echo... "+ methodExecute();
+    }
+
+    private String methodExecute() {
+        throw new RuntimeException("Shit happens");
     }
 
     public String fallback_hello( String param  ){
-        return "Sorry.. delayed in controller (1000)!!";
+        return "Sorry.. something wrong!!";
     }
 }
