@@ -9,8 +9,6 @@ public class HystrixCommandImpl extends HystrixCommand<String> {
 
     public HystrixCommandImpl(String p){
         super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("HystrixCommandImplServiceGroup"))
-                .andCommandKey(HystrixCommandKey.Factory.asKey("PrimaryCommand"))
-                .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("PrimaryCommand"))
                 .andCommandPropertiesDefaults(
                         // we default to a 600ms timeout for primary
                         HystrixCommandProperties.Setter().withExecutionTimeoutInMilliseconds(200)
